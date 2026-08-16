@@ -13,7 +13,8 @@ fun Context.hasPermission(permissionType: String): Boolean {
 }
 fun Context.hasRequiredRuntimePermissions(): Boolean {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-        hasPermission("android.permission.BLUETOOTH_SCAN")
+        hasPermission("android.permission.BLUETOOTH_SCAN") &&
+                hasPermission("android.permission.BLUETOOTH_CONNECT")
     } else {
         hasPermission("android.permission.ACCESS_FINE_LOCATION")
     }
@@ -44,7 +45,7 @@ private fun Activity.requestLocationPermission() {
 private fun Activity.requestBluetoothPermissions() {
     ActivityCompat.requestPermissions(
         this,
-        arrayOf("android.permission.BLUETOOTH_SCAN"),
+        arrayOf("android.permission.BLUETOOTH_SCAN", "android.permission.BLUETOOTH_CONNECT"),
         RUNTIME_PERMISSION_REQUEST_CODE
     )
 }

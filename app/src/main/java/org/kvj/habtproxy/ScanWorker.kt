@@ -180,12 +180,17 @@ class ScanWorker(context: Context, params: WorkerParameters) : CoroutineWorker(c
                         val address = result.device.address.uppercase()
                         devicesFound.add(address)
                         if (!discoveryResults.discoveredRecords.containsKey(address)) {
-                            discoveryResults.discoveredRecords[address] = DiscoveredDevice(record, result.rssi, result.txPower, record.deviceName)
+                            discoveryResults.discoveredRecords[address] = DiscoveredDevice(result.device, record, result.rssi, result.txPower, record.deviceName)
                             Log.d(TAG, "onScanResult(): New entry[$address]: ${discoveryResults.discoveredRecords[address]}")
                         } else {
                             if (discoveryResults.discoveredRecords[address]?.updateMaybe(record, result.rssi, result.txPower, record.deviceName) == true) {
                                 Log.d(TAG, "onScanResult(): Updated entry[$address]: ${discoveryResults.discoveredRecords[address]}")
                             }
+                        }
+                        try {
+                            YunmaiBridge.onDeviceSeen(applicationContext, result.device, record.deviceName)
+                        } catch (e: Exception) {
+                            Log.e(TAG, "onScanResult(): YunmaiBridge error", e)
                         }
                         record
                     }
@@ -218,6 +223,11 @@ class ScanWorker(context: Context, params: WorkerParameters) : CoroutineWorker(c
                 break
             }
             executeScan()
+            try {
+                YunmaiBridge.tick(applicationContext, discoveryResults.discoveredRecords)
+            } catch (e: Exception) {
+                Log.e(TAG, "doWork(): YunmaiBridge tick error", e)
+            }
             uploadData()
             if (optimizeBackground && !powerManager.isInteractive) {
                 Log.d(TAG, "doWork(): Stopping background scan for optimization")

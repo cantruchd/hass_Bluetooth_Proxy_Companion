@@ -15,4 +15,14 @@
     <string name="settings_scan_duration">scan_duration</string>
     <string name="settings_scan_interval">scan_interval</string>
     <string name="settings_upload_inteval">upload_inteval</string>
+
+    <string name="settings_yunmai_enabled">yunmai_enabled</string>
+    <string name="settings_yunmai_enabled_def">false</string>
+    <string name="settings_yunmai_address">yunmai_address</string>
+    <string name="settings_yunmai_height">yunmai_height</string>
+    <string name="settings_yunmai_height_def">175</string>
+    <string name="settings_yunmai_age">yunmai_age</string>
+    <string name="settings_yunmai_age_def">30</string>
+    <string name="settings_yunmai_sex">yunmai_sex</string>
+    <string name="settings_yunmai_sex_def">male</string>
 </resources>

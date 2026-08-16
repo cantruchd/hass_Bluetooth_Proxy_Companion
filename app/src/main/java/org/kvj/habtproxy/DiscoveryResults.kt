@@ -1,5 +1,6 @@
 package org.kvj.habtproxy
 
+import android.bluetooth.BluetoothDevice
 import android.bluetooth.le.ScanRecord
 import android.util.Log
 import java.util.Date
@@ -30,7 +31,7 @@ private fun serviceRecordsEqual(a: ScanRecord, b: ScanRecord): Boolean {
     return true;
 }
 
-data class DiscoveredDevice(var record: ScanRecord, var rssi: Int, var txPower: Int, var name: String?, var timestamp: Long = Date().time) {
+data class DiscoveredDevice(var device: BluetoothDevice, var record: ScanRecord, var rssi: Int, var txPower: Int, var name: String?, var timestamp: Long = Date().time) {
 
     private val rssiChangeThreshold = 10 // TODO: Configure
 

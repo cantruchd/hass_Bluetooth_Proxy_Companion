@@ -32,4 +32,29 @@
             app:key="@string/settings_upload_inteval"
             app:title="Data upload interval (seconds)"/>
     </PreferenceCategory>
+    <PreferenceCategory app:title="Yunmai Scale">
+        <SwitchPreferenceCompat
+            app:key="@string/settings_yunmai_enabled"
+            app:defaultValue="@string/settings_yunmai_enabled_def"
+            app:title="Yunmai scale bridge"/>
+        <EditTextPreference
+            app:useSimpleSummaryProvider="true"
+            app:key="@string/settings_yunmai_address"
+            app:title="Scale MAC address (empty = auto)"/>
+        <EditTextPreference
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="@string/settings_yunmai_height_def"
+            app:key="@string/settings_yunmai_height"
+            app:title="Height (cm)"/>
+        <EditTextPreference
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="@string/settings_yunmai_age_def"
+            app:key="@string/settings_yunmai_age"
+            app:title="Age (years)"/>
+        <EditTextPreference
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="@string/settings_yunmai_sex_def"
+            app:key="@string/settings_yunmai_sex"
+            app:title="Sex (male/female)"/>
+    </PreferenceCategory>
 </PreferenceScreen>
